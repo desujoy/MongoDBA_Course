@@ -1,0 +1,81 @@
+Q1 Print all Worker details ordered by 
+Ans:
+ SELECT * FROM Worker
+ ORDER BY FIRST_NAME ASC;
+ FIRST_NAME
+ Ascending
+ 
+Q2 Print all Worker details ordered by 
+FIRST_NAME
+ Ascending and 
+Ans:
+ SELECT * FROM Worker
+ ORDER BY FIRST_NAME ASC, DEPARTMENT DESC;
+ 
+Q3 Exclude workers with 
+FIRST_NAME
+ "Vipul" and "Satish"
+ DEPARTMENT
+ Descending
+ Ans
+ SELECT * FROM Worker WHERE FIRST_NAME NOT IN ('Vipul', 'Satish');
+ 
+Q4 Find Workers whose 
+FIRST_NAME
+ ends with 'h' and contains six alphabets?
+ Ans
+ SELECT * FROM Worker
+ WHERE FIRST_NAME LIKE '_h';
+ 
+Q5 Count employees working in the 
+Ans:
+ Admin
+ department
+ SELECT COUNT(*) AS Admin_Count
+ FROM Worker
+ WHERE DEPARTMENT = 'Admin';
+ 
+Q6 Fetch worker names with salaries between 
+Ans
+ 50000
+ and 
+SELECT FIRST_NAME, LAST_NAME, SALARY
+ FROM Worker
+ WHERE SALARY BETWEEN 50000 AND 100000;
+ 
+Q7 Count workers in each department in descending order
+ Ans
+ SELECT DEPARTMENT, COUNT(*) AS Worker_Count
+ FROM Worker
+ GROUP BY DEPARTMENT
+ 100000
+ ORDER BY Worker_Count DESC;
+
+Q8 Write an SQL Query to determine the 5th highest salary without using TOP or limit
+ method.
+ Ans :
+ SELECT DISTINCT SALARY
+ FROM Worker W1
+ WHERE 4 = (
+ SELECT COUNT(DISTINCT SALARY)
+ FROM Worker W2
+ WHERE W2.SALARY > W1.SALARY
+ );
+ 
+Q9 Write an SQL Query to fetch the list of employees with the same salary.
+ Ans:
+ SELECT
+ FROM Worker
+ WHERE SALARY IN (
+ SELECT SALARY
+ FROM Worker
+ GROUP BY SALARY
+ HAVING COUNT( ) > 1
+ );
+ 
+Q10. Write an SQL Query to fetch the departments that have less than three people in it.
+ Ans:
+ SELECT DEPARTMENT
+ FROM Worker
+ GROUP BY DEPARTMENT
+ HAVING COUNT(*) < 3
